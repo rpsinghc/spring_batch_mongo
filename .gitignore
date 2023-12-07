@@ -1,0 +1,97 @@
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+
+# Temporary files #
+###################
+*.swp
+*.swo
+*~
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.rar
+*.tar
+
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+
+# MISC #
+######################
+/target/
+.project
+.settings
+.classpath
+.vlt
+.dropbox
+aem-jar
+dependency-reduced-pom.xml
+.mvn
+/.vscode/
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# STS #
+#######
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+# IntelliJ IDEA #
+#################
+.idea
+*.iws
+*.iml
+*.ipr
+
+
+# NetBeans #
+############
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+
+# Gradel generated files #
+##########################
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+out
+
+
+# Local Binaries #
+##################
+local
+/bin/
+
+# Logs #
+########
+catalina.base_IS_UNDEFINED
+/target/
