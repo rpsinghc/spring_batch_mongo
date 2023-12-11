@@ -1,14 +1,12 @@
 package org.rpsingh.spring.batch;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.ItemProcessListener;
 import org.springframework.batch.item.ItemProcessor;
 
-public class CoffeeItemProcessor implements ItemProcessor<Coffee, Coffee>, ItemProcessListener<Coffee,Coffee> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CoffeeItemProcessor.class);
+@Slf4j
+public class CoffeeItemProcessor implements ItemProcessor<Coffee, Coffee>, ItemProcessListener<Coffee,Coffee> {
 
     @Override
     public Coffee process(final Coffee coffee) {
@@ -18,13 +16,13 @@ public class CoffeeItemProcessor implements ItemProcessor<Coffee, Coffee>, ItemP
         String characteristics = coffee.getCharacteristics().toUpperCase();
 
         Coffee transformedCoffee = new Coffee(brand, origin, characteristics);
-        LOGGER.info("Converting ( {} ) into ( {} )", coffee, transformedCoffee);
+        log.info("Converting ( {} ) into ( {} )", coffee, transformedCoffee);
 
         return transformedCoffee;
     }
 
     @Override
-    public void onProcessError(Coffee item, Exception e) {
-        LOGGER.error("messaget "+item.toString(), e);
+    public void onProcessError(Coffee item, Exception exception) {
+        log.error(" error message "+item.toString(), exception);
     }
 }

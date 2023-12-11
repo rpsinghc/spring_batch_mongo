@@ -79,9 +79,8 @@ public class BatchConfigurationMongo {
         return executorJobLauncher;
     }
 
-    @Bean
-    public JobLauncherApplicationRunner jobLauncherApplicationRunner(JobLauncher jobLauncher, JobExplorer jobExplorer,
-                                                                     JobRepository jobRepository, BatchProperties properties) {
+   // @Bean
+    public JobLauncherApplicationRunner jobLauncherApplicationRunner(JobLauncher jobLauncher, JobExplorer jobExplorer,JobRepository jobRepository, BatchProperties properties) {
         JobLauncherApplicationRunner runner = new JobLauncherApplicationRunner(jobLauncher, jobExplorer, jobRepository);
         String jobNames = "importUserJob";//properties.getJob().getName();
         if (StringUtils.hasText(jobNames)) {
@@ -96,9 +95,9 @@ public class BatchConfigurationMongo {
         return new MongoTransactionManager(dbFactory);
     }
 
-    @Bean
-    public Job importUserJob(JobRepository jobRepository, JobCompletionNotificationListener listener, Step step1) {
-        return new JobBuilder("importUserJob", jobRepository).incrementer(new RunIdIncrementer()).listener(listener).flow(step1).end().build();
+    //@Bean
+    public Job importUserJob(JobRepository jobRepository, JobCompletionNotificationListener listener, Step step) {
+        return new JobBuilder("importUserJob", jobRepository).incrementer(new RunIdIncrementer()).listener(listener).flow(step).end().build();
     }
 
 
@@ -107,10 +106,9 @@ public class BatchConfigurationMongo {
         return new MapJobRegistry();
     }
 
-   @Bean
-    public Step step1(JobRepository jobRepository, PlatformTransactionManager transactionManager, ItemWriter<Coffee> writer, CoffeeItemProcessor processor, FlatFileItemReader reader) {
-        return new StepBuilder("step1", jobRepository).<Coffee,Coffee>chunk(1, transactionManager).reader(reader).processor(processor).writer(writer).build();
+   //@Bean
+    public Step step(JobRepository jobRepository, PlatformTransactionManager transactionManager, ItemWriter<Coffee> writer, CoffeeItemProcessor processor, FlatFileItemReader reader, BatchReadStepListener batchReadStepListener, BatchWriteStepListener batchWriteStepListener, BatchProcessStepListener batchProcessStepListener) {
+        return new StepBuilder("step", jobRepository).<Coffee,Coffee>chunk(1, transactionManager).listener(batchReadStepListener).listener(batchProcessStepListener).listener(batchWriteStepListener).reader(reader).processor(processor).writer(writer).build();
     }
-
 
 }

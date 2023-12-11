@@ -1,5 +1,6 @@
 package org.rpsingh.spring.batch;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.BatchStatus;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
+
+@Slf4j
 @Component
 public class JobCompletionNotificationListener implements JobExecutionListener {
 
@@ -19,6 +22,12 @@ public class JobCompletionNotificationListener implements JobExecutionListener {
     @Autowired
     public JobCompletionNotificationListener(MongoTemplate jdbcTemplate) {
         this.mongoTemplate = jdbcTemplate;
+    }
+
+
+    @Override
+    public void beforeJob(JobExecution jobExecution) {
+            log.info("mongo  : {}",mongoTemplate);
     }
 
     @Override

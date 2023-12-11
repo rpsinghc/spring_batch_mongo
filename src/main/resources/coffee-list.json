@@ -1,0 +1,17 @@
+[
+    {
+        "brand": "Blue Mountain",
+        "origin": "Jamaica",
+        "characteristics": "Fruity"
+    },
+    {
+        "brand": "Lavazza",
+        "origin": "Colombia",
+        "characteristics": "Strong"
+    },
+    {
+        "brand": "Folgers",
+        "origin": "America",
+        "characteristics": "Smokey"
+    }
+]
